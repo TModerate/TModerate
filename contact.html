@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - TMODERATE Electrical Services</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Contact Us</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="contact-section">
+        <h2>Pay ₦100 to Contact Us</h2>
+        <button onclick="payWithPaystack()" class="btn">Pay Now</button>
+        
+        <form id="contactForm" style="display: none;">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message"></textarea>
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>📍 Lagos & Ogun State | 📞 08108075987 | ✉ detoyman2002@gmail.com</p>
+    </footer>
+
+    <script>
+        function payWithPaystack() {
+            var handler = PaystackPop.setup({
+                key: 'pk_test_8d83d2b77a4ebdd78599af26223c13a011b29358', // Replace with your Paystack Public Key
+                email: 'customer@example.com',
+                amount: 10000, // Amount in Kobo (100 Naira)
+                currency: 'NGN',
+                callback: function(response){
+                    alert('Payment successful! Ref: ' + response.reference);
+                    document.getElementById('contactForm').style.display = 'block';
+                },
+                onClose: function(){
+                    alert('Payment window closed.');
+                }
+            });
+            handler.openIframe();
+        }
+    </script>
+</body>
+</html>
